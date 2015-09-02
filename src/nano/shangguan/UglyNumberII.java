@@ -55,10 +55,10 @@ public class UglyNumberII {
     }
 
     private void init() {
-        initList = new ArrayList<>();
-        list1 = new ArrayList<>();
-        list2 = new ArrayList<>();
-        list3 = new ArrayList<>();
+        initList = new ArrayList<Integer>();
+        list1 = new ArrayList<Integer>();
+        list2 = new ArrayList<Integer>();
+        list3 = new ArrayList<Integer>();
         //初始化initList
         for (int prime : arr) {
             initList.add(prime);
@@ -76,7 +76,7 @@ public class UglyNumberII {
 
     private int findNextUglyNumber() {
         //合并三个list
-        ArrayList<Integer> listAll = new ArrayList<>();
+        ArrayList<Integer> listAll = new ArrayList<Integer>();
         listAll.addAll(list1);
         listAll.addAll(list2);
         listAll.addAll(list3);
