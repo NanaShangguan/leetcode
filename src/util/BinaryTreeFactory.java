@@ -13,17 +13,26 @@ public class BinaryTreeFactory {
      */
     public static TreeNode getBinaryTree(String serializedString) {
         String[] arr = serializedString.split(" ");
-        Stack<String> stack = new Stack<>();
+        Stack<String> stack = new Stack<String>();
         for (int i = arr.length - 1; i >= 0; i--) {
             stack.push(arr[i]);
         }
-
+        TreeNode root = generate(stack);
+        return root;
     }
 
-    private static TreeNode generate(TreeNode node, Stack<String> stack) {
+    private static TreeNode generate(Stack<String> stack) {
         String value = stack.pop();
         if (value.equals("#"))
             return null;
-        node.val = Integer.parseInt(value);
+        TreeNode node = new TreeNode(Integer.parseInt(value));
+        node.left = generate(stack);
+        node.right = generate(stack);
+        return node;
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = BinaryTreeFactory.getBinaryTree("30 10 50 # # # 20 45 # # 35 # #");
+        System.out.println(root);
     }
 }
