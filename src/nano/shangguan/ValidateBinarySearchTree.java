@@ -3,6 +3,9 @@ package nano.shangguan;
 import util.BinaryTreeFactory;
 import util.TreeNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Nano on 2015/9/8.
  */
@@ -14,7 +17,21 @@ public class ValidateBinarySearchTree {
      */
     public boolean isValidBST(TreeNode root) {
         if (root == null) return true;
-        return check(root) != null;
+//        return check(root) != null;   //solution1
+        //solution2
+        List<Integer> inOrder = new ArrayList<Integer>();
+        inOrderTraversal(root, inOrder);
+        for (int i = 1; i < inOrder.size(); i++) {
+            if (inOrder.get(i) <= inOrder.get(i - 1))
+                return false;
+        }
+        return true;
+    }
+
+    private void inOrderTraversal(TreeNode root, List<Integer> order) {
+        if (root.left != null) inOrderTraversal(root.left, order);
+        order.add(root.val);
+        if (root.right != null) inOrderTraversal(root.right, order);
     }
 
     /**
