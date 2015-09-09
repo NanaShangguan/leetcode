@@ -28,6 +28,11 @@ public class ValidateBinarySearchTree {
         return true;
     }
 
+    /**
+     * 中序遍历是递增序列
+     * @param root
+     * @param order
+     */
     private void inOrderTraversal(TreeNode root, List<Integer> order) {
         if (root.left != null) inOrderTraversal(root.left, order);
         order.add(root.val);
