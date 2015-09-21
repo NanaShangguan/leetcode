@@ -24,7 +24,7 @@ public class MaxPointsOnALine {
                 if (offsetX == 0) {
                     slope = "null|" + point1.x;
                 } else {
-                    double s = offsetY / offsetX;
+                    double s = ((double) offsetY) / offsetX;
                     if (s == 0) {
                         slope = s + "|" + point1.y;
                     } else {
