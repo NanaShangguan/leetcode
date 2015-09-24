@@ -10,8 +10,9 @@ import java.util.*;
  */
 public class LowestCommonAncestorOfABinaryTree {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        List<TreeNode> pathToP = getRootToNodePath(root, p);
-        List<TreeNode> pathToQ = getRootToNodePath(root, q);
+        List<TreeNode>[] paths = getRootToNodePath(root, p, q);
+        List<TreeNode> pathToP = paths[0];
+        List<TreeNode> pathToQ = paths[1];
         int i = 0;
         while (i < pathToP.size()
                 && i < pathToQ.size()
@@ -19,22 +20,27 @@ public class LowestCommonAncestorOfABinaryTree {
         return pathToP.get(i - 1);
     }
 
-    private List<TreeNode> getRootToNodePath(TreeNode root, TreeNode node) {
-        List<TreeNode> list = new ArrayList<TreeNode>();
+    private List<TreeNode>[] getRootToNodePath(TreeNode root, TreeNode p, TreeNode q) {
+        List<TreeNode>[] list = new List[2];
+        list[0] = new ArrayList<TreeNode>();
+        list[1] = new ArrayList<TreeNode>();
         Stack<TreeNode> stack = new Stack<TreeNode>();
         Map<TreeNode, TreeNode> map = new HashMap<TreeNode, TreeNode>();
         map.put(root, root);
         stack.push(root);
         while (!stack.isEmpty()) {
             TreeNode top = stack.pop();
-            if (top.val == node.val) {
-                list.add(top);
+            if (top == p || top == q) {
+                List<TreeNode> path;
+                if (top == p) path = list[0];
+                else path = list[1];
+                path.add(top);
                 TreeNode n = top;
                 while (n != root) {
                     n = map.get(n);
-                    list.add(0, n);
+                    path.add(0, n);
                 }
-                break;
+                if (list[0].size() != 0 && list[1].size() != 0) break;
             }
             if (top.right != null) {
                 stack.push(top.right);
