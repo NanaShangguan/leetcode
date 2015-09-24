@@ -9,10 +9,23 @@ import java.util.*;
  * Created by Nano on 2015/9/23.
  */
 public class LowestCommonAncestorOfABinaryTree {
+    private boolean isPFinished = false;
+    private boolean isQFinished = false;
+
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        List<TreeNode>[] paths = getRootToNodePath(root, p, q);
-        List<TreeNode> pathToP = paths[0];
-        List<TreeNode> pathToQ = paths[1];
+        /*µÝ¹é2
+        if (root == null) return null;
+        if (root == p || root == q) return root;
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left != null && right != null) return root;
+        return (left == null) ? right : left;
+        */
+
+        List<TreeNode> pathToP = new ArrayList<TreeNode>();
+        List<TreeNode> pathToQ = new ArrayList<TreeNode>();
+        getRootToNodePath(root, p, q, pathToP, pathToQ);
+
         int i = 0;
         while (i < pathToP.size()
                 && i < pathToQ.size()
@@ -20,7 +33,28 @@ public class LowestCommonAncestorOfABinaryTree {
         return pathToP.get(i - 1);
     }
 
+    //µÝ¹é1 Çópath
+    private void getRootToNodePath(TreeNode root
+            , TreeNode p, TreeNode q, List<TreeNode> listP, List<TreeNode> listQ) {
+        if ((isPFinished && isQFinished) || root == null) return;
+        if (root == p) {
+            listP.add(root);
+            isPFinished = true;
+        } else if (root == q) {
+            listQ.add(root);
+            isQFinished = true;
+        }
+        if (!isPFinished) listP.add(root);
+        if (!isQFinished) listQ.add(root);
+        getRootToNodePath(root.left, p, q, listP, listQ);
+        getRootToNodePath(root.right, p, q, listP, listQ);
+        if (!isPFinished) listP.remove(listP.size() - 1);
+        if (!isQFinished) listQ.remove(listQ.size() - 1);
+    }
+
+    /*stack + map
     private List<TreeNode>[] getRootToNodePath(TreeNode root, TreeNode p, TreeNode q) {
+
         List<TreeNode>[] list = new List[2];
         list[0] = new ArrayList<TreeNode>();
         list[1] = new ArrayList<TreeNode>();
@@ -52,24 +86,7 @@ public class LowestCommonAncestorOfABinaryTree {
             }
         }
         return list;
-        /* µÝ¹é
-        if (root == null) return null;
-        if (root.val == node.val) {
-            ArrayList<TreeNode> list = new ArrayList<TreeNode>();
-            list.add(root);
-            return list;
-        }
-        List<TreeNode> leftPath = getRootToNodePath(root.left, node);
-        if (leftPath == null) {
-            List<TreeNode> rightPath = getRootToNodePath(root.right, node);
-            if (rightPath == null) return null;
-            rightPath.add(0, root);
-            return rightPath;
-        }
-        leftPath.add(0, root);
-        return leftPath;
-        */
-    }
+    }*/
 
     public static void main(String[] args) {
         System.out.println(new LowestCommonAncestorOfABinaryTree().lowestCommonAncestor(
