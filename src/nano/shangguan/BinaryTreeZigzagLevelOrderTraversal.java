@@ -13,9 +13,9 @@ import java.util.Queue;
  */
 public class BinaryTreeZigzagLevelOrderTraversal {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
         List<List<Integer>> lists = new ArrayList<List<Integer>>();
         if (root != null) {
+            Queue<TreeNode> queue = new LinkedList<TreeNode>();
             queue.add(root);
             int level = 0;
             while (!queue.isEmpty()) {

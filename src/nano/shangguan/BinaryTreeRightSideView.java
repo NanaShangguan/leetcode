@@ -13,9 +13,9 @@ import java.util.Queue;
  */
 public class BinaryTreeRightSideView {
     public List<Integer> rightSideView(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
         List<Integer> list = new ArrayList<Integer>();
         if (root != null) {
+            Queue<TreeNode> queue = new LinkedList<TreeNode>();
             queue.add(root);
             while (!queue.isEmpty()) {
                 Queue<TreeNode> newQueue = new LinkedList<TreeNode>();
