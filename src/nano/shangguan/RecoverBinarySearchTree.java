@@ -10,6 +10,7 @@ import java.util.Stack;
 /**
  * Created by Nano on 2015/9/28.
  * 题目转换：在一个升序数组中，有两个数字调换了位置，找出这两个数字
+ * 递归实现：http://www.2cto.com/kf/201310/251524.html
  */
 public class RecoverBinarySearchTree {
     public void recoverTree(TreeNode root) {
