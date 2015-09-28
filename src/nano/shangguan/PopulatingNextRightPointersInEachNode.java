@@ -7,11 +7,12 @@ import java.util.Queue;
 
 /**
  * Created by Nano on 2015/9/10.
+ * 该解法不满足[常数空间复杂度]的要求，详见 PopulatingNextRightPointersInEachNodeII
  */
 public class PopulatingNextRightPointersInEachNode {
     /**
      *
-     * @param root ��ȫ������
+     * @param root 满二叉树
      */
     public void connect(TreeLinkNode root) {
         if (root != null) {
