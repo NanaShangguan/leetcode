@@ -5,14 +5,14 @@ package nano.shangguan;
  */
 public class ContainerWithMostWater {
     public int maxArea(int[] height) {
-        int maxArea = 0;
         int len = height.length;
-        for (int i = 0; i < len - 1; i++) {
-            int min_height = height[i];
-            if (height[i] > height[i + 1])
-                min_height = height[i + 1];
-            if (min_height > maxArea)
-                maxArea = min_height;
+        if (len == 0 || len == 1) return 0;
+        int maxArea = 0;
+        for (int low = 0, high = len - 1; low < high; ) {
+            int length = high - low;
+            int minIndex = (height[low] > height[high] ? high-- : low++);
+            int area = length * height[minIndex];
+            if (maxArea < area) maxArea = area;
         }
         return maxArea;
     }
