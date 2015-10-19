@@ -8,11 +8,12 @@ import util.ListNode;
 public class SortList {
 
     public ListNode sortList(ListNode head) {
-
+        return mergeSort(head);
     }
 
     private ListNode mergeSort(ListNode head) {
         if (head == null) return null;
+        if (head.next == null) return head;
         //快慢指针找出中点
         ListNode fast = head, slow = head;
         int len = 0;
@@ -124,5 +125,12 @@ public class SortList {
             }
         }
         return head;
+    }
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(3);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(1);
+        System.out.println(new SortList().mergeSort(head));
     }
 }
