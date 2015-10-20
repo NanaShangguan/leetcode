@@ -7,9 +7,9 @@ import java.util.Stack;
  */
 public class BinaryTreeFactory {
     /**
-     * ¶ş²æÊ÷µÄ·´ĞòÁĞ»¯
-     * @param serializedString ¶ş²æÊ÷ÏÈĞò±éÀúµÃµ½µÄĞòÁĞ»¯×Ö·û´®
-     * @return ¸ù½Úµã
+     * äºŒå‰æ ‘çš„ååºåˆ—åŒ–
+     * @param serializedString äºŒå‰æ ‘å…ˆåºéå†å¾—åˆ°çš„åºåˆ—åŒ–å­—ç¬¦ä¸²
+     * @return æ ¹èŠ‚ç‚¹
      */
     public static TreeNode getBinaryTree(String serializedString) {
         String[] arr = serializedString.split(" ");
