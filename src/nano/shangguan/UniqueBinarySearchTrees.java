@@ -1,13 +1,12 @@
 package nano.shangguan;
 
-import java.util.HashMap;
 
 /**
  * Created by Nano on 2015/9/9.
  */
 public class UniqueBinarySearchTrees {
     /**
-     * ËãÒ»°ë³ËÒÔ2
+     * ç®—ä¸€åŠä¹˜ä»¥2
      * @param n
      * @return
      */
