@@ -5,6 +5,12 @@ import util.ListNode;
 
 /**
  * Created by Nano on 2015/10/22.
+ * 其他方法：
+ * 1. 合并成一个大链表，再进行优化排序
+ * 2. 把本解法中的快速排序替换成堆排序
+ * 3. 胜者树or败者树or堆
+ * 刚开始有想过两两合并，但是顺序合并超时，有人的解法
+ * 是分治法，直到剩下两组list，会比顺序合并快？
  */
 public class MergeSortedLists {
     public ListNode mergeKLists(ListNode[] lists) {
