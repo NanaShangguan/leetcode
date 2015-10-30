@@ -3,7 +3,7 @@ package nano.shangguan;
 import java.util.Stack;
 
 /**
- * Created by Lenovo on 2015/10/30.
+ * Created by Nano on 2015/10/30.
  */
 public class SimplifyPath {
     public String simplifyPath(String path) {
