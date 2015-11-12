@@ -36,6 +36,6 @@ public class MergeIntervalsTest extends TestCase {
 //        expected.add(interval3);
 //        expected.add(interval4);
         new MergeIntervals().merge(list);
-        assertEquals("Wrong Answer", list.toString(), expected.toString());
+        assertEquals("Wrong Answer", expected.toString(), list.toString());
     }
 }

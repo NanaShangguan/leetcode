@@ -13,6 +13,6 @@ public class BullsAndCowsTest {
     @Test
     public void testGetHint() throws Exception {
         String result = new BullsAndCows().getHint("11", "10");
-        Assert.assertEquals("结果错误", result, "1A0B");
+        Assert.assertEquals("结果错误", "1A0B", result);
     }
 }

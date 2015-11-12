@@ -49,6 +49,6 @@ public class SortColorsTest extends TestCase {
     @Test
     public void testSortColors() throws Exception {
         new SortColors().sortColors(input);
-        assertEquals("Wrong Answer", Arrays.toString(input), expected);
+        assertEquals("Wrong Answer", expected, Arrays.toString(input));
     }
 }

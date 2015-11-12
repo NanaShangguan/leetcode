@@ -20,6 +20,8 @@ public class MergeIntervals {
      * iterate过程中size会变
      *
      * 快排超时，不稳定，TBD 改成归并排序
+     *
+     * Further: 不使用排序，不超过n^2
      * @param intervals
      * @return
      */

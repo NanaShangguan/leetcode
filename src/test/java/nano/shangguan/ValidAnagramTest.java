@@ -38,6 +38,6 @@ public class ValidAnagramTest extends TestCase {
 
     @Test
     public void testIsAnagram() throws Exception {
-        assertEquals("Wrong Answer [" + input1 + ", " + input2 + "]", validAnagram.isAnagram(input1, input2), expected);
+        assertEquals("Wrong Answer [" + input1 + ", " + input2 + "]", expected, validAnagram.isAnagram(input1, input2));
     }
 }
