@@ -24,7 +24,7 @@ public class MaximumGap {
             else if (nums[i] < min) min = nums[i];
         }
         //创建桶，记录每个桶内的最大值和最小值
-        List<Integer>[] buckets = new List[len];
+        boolean[] isNotEmpty = new boolean[len];
         int[] maxNums = new int[len];
         int[] minNums = new int[len];
 
@@ -34,11 +34,10 @@ public class MaximumGap {
         //遍历第二次，入桶，并记录最大值最小值
         for (int num : nums) {
             int index = (num - min) / bucketSize;
-            if (buckets[index] == null) buckets[index] = new ArrayList<Integer>();
-            buckets[index].add(num);
-            if (buckets[index].size() == 1) {
+            if (!isNotEmpty[index]) {
                 maxNums[index] = num;
                 minNums[index] = num;
+                isNotEmpty[index] = true;
             } else if (num > maxNums[index]) maxNums[index] = num;
             else if (num < minNums[index]) minNums[index] = num;
         }
@@ -46,8 +45,7 @@ public class MaximumGap {
         int maxGap = 0;
         int prev = -1;
         for (int i = 0; i < len; i++) {
-            List<Integer> bucket = buckets[i];
-            if (bucket != null) {
+            if (isNotEmpty[i]) {
                 if (prev != -1) {
                    if (maxGap < minNums[i] - maxNums[prev])
                        maxGap = minNums[i] - maxNums[prev];
