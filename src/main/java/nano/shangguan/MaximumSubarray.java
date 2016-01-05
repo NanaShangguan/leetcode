@@ -5,19 +5,25 @@ package nano.shangguan;
  */
 public class MaximumSubarray {
     public int maxSubArray(int[] nums) {
-        int len = nums.length;
-        if (len == 0) return 0;
-        int[] dp = new int[len];
-        int[] maxFromLast = new int[len];
+        return max(nums, 0, nums.length - 1);
+    }
 
-        dp[0] = nums[0];
-        maxFromLast[0] = nums[0];
-        for (int i = 1; i < len; i++) {
-            maxFromLast[i] = Math.max(nums[i], maxFromLast[i - 1] + nums[i]);
-            if (nums[i] > 0) {
-                dp[i] = Math.max(dp[i - 1], maxFromLast[i]);
-            } else dp[i] = Math.max(dp[i - 1], nums[i]);
+    private int max(int[] nums, int start, int end) {
+        if (start > end) return Integer.MIN_VALUE;
+        if (start == end) return nums[start];
+        int pivot = (start + end) / 2;
+        int leftMax = max(nums, start, pivot - 1);
+        int rightMax = max(nums, pivot + 1, end);
+        int sum = nums[pivot], max = sum;
+        for (int i = pivot - 1; i >= start; i--) {
+            sum += nums[i];
+            if (max < sum) max = sum;
         }
-        return dp[len - 1];
+        sum = max;
+        for (int j = pivot + 1; j <= end; j++) {
+            sum += nums[j];
+            if (max < sum) max = sum;
+        }
+        return Math.max(leftMax, Math.max(rightMax, max));
     }
 }
