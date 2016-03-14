@@ -1,6 +1,7 @@
 package nano.shangguan;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,15 +15,16 @@ public class NQueens {
     public List<List<String>> solveNQueens(int n) {
         positions = new int[n];
         result = new ArrayList<List<String>>();
-
-
+        solveNQueensRecursively(1, n);
+        return result;
     }
 
     /**
-     * @param row 当前行
+     * @param row 当前行[1, n]
      * @param n 总行数
      */
     private void solveNQueensRecursively(int row, int n) {
+        if (row > n) return;
         for (int i = 0; i < n; i++) {
             //当前列为空
             if (positions[i] == 0) {
@@ -32,7 +34,7 @@ public class NQueens {
                     if (j == i) continue;
                     if (positions[j] != 0) {
                         //是否在一条对角线上
-                        if (Math.abs((positions[i] - positions[j]) / (i - j)) == 1) {
+                        if (Math.abs(((double) row - positions[j]) / (i - j)) == 1) {
                             available = false;
                             break;
                         }
@@ -42,10 +44,22 @@ public class NQueens {
                     positions[i] = row;
                     if (row == n) {
                         //生成结果list，加入到result
-
-                        return;
+                        StringBuilder stringBuilder = new StringBuilder(n);
+                        //初始化为[....]
+                        for (int j = 0; j < n; j++) stringBuilder.append('.');
+                        //将position数组转换为string list
+                        String[] list = new String[n];
+                        for (int j = 0; j < n; j++) {
+                            int r = positions[j] - 1;
+                            stringBuilder.setCharAt(j, 'Q');
+                            list[r] = stringBuilder.toString();
+                            stringBuilder.setCharAt(j, '.');
+                        }
+                        result.add(Arrays.asList(list));
                     }
                     solveNQueensRecursively(row + 1, n);
+                    //重置
+                    positions[i] = 0;
                 }
             }
         }
