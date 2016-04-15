@@ -1,19 +1,15 @@
 package util;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Nano on 2016/4/12.
  */
 class TrieNode {
-    // Initialize your data structure here.
-    private String val;
+    boolean isEnd;
+    TrieNode[] children;
+
     public TrieNode() {
-        this.val = "";
-    }
-    public TrieNode(String val) {
-        this.val = val;
+        isEnd = false;
+        children = new TrieNode[26];
     }
 }
 
@@ -24,20 +20,32 @@ public class Trie {
         root = new TrieNode();
     }
 
-    // Inserts a word into the trie.
     public void insert(String word) {
-
+        TrieNode current = root;
+        for(int i = 0, L = word.length(); i < L; i++) {
+            int id = word.charAt(i) - 'a';
+            if(current.children[id] == null) {
+                current.children[id] = new TrieNode();
+            }
+            current = current.children[id];
+        }
+        current.isEnd = true;
     }
 
-    // Returns if the word is in the trie.
     public boolean search(String word) {
-
+        return search(word, 1);
     }
-
-    // Returns if there is any word in the trie
-    // that starts with the given prefix.
     public boolean startsWith(String prefix) {
-
+        return search(prefix, 2);
+    }
+    private boolean search(String str, int type) {
+        TrieNode current = root;
+        int i = -1, L = str.length();
+        while(++i < L) {
+            int id = str.charAt(i) - 'a';
+            if((current = current.children[id]) == null) return false;
+        }
+        return type == 1 ? current.isEnd : true;
     }
 }
 
