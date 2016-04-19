@@ -8,7 +8,12 @@ import junit.framework.TestCase;
 public class BestTimeToBuyAndSellStockIIITest extends TestCase {
 
     public void testMaxProfit() throws Exception {
-        int[] prices = new int[]{1,2,3,4};
-        assertEquals("Wrong Answer", 3, new BestTimeToBuyAndSellStockIII().maxProfit(prices));
+        int[][] prices = {
+                {1,2,3,4},
+//                {1,2,4,2,5,7,2,4,9,0}
+        };
+        int[] expected = {3, 13};
+        for (int i = 0; i < prices.length; i++)
+            assertEquals("Wrong Answer", expected[i], new BestTimeToBuyAndSellStockIII().maxProfit(prices[i]));
     }
 }
