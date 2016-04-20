@@ -8,8 +8,10 @@ import junit.framework.TestCase;
 public class EditDistanceTest extends TestCase {
 
     public void testMinDistance() throws Exception {
-        String word1 = "a1efo3heu2h";
-        String word2 = "fc1bbd32ge";
-        assertEquals("WA", 0, new EditDistance().minDistance(word1, word2));
+//        "mart"
+//        "karma"
+        String word1 = "mart";
+        String word2 = "karma";
+        assertEquals("WA", 3, new EditDistance().minDistance(word1, word2));
     }
 }
